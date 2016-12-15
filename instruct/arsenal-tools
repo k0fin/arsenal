@@ -1,0 +1,209 @@
+TITLE=The Backdoor Factory
+PREINSTALL=None
+CLIENT_CMD=git clone
+URL=https://github.com/secretsquirrel/the-backdoor-factory
+PATH=/opt/the-backdoor-factory
+INSTALL=cd /opt/the-backdoor-factory && ./install.sh && cd /opt
+##
+TITLE=HTTPScreenshot
+PREINSTALL=pip install selenium
+CLIENT_CMD=git clone
+URL=https://github.com/breenmachine/httpscreenshot.git
+PATH=/opt/httpscreenshot
+INSTALL=cd /opt/httpscreenshot && chmod +x install-dependencies.sh && ./install-dependencies.sh && cd /opt
+##
+TITLE=SMBExec
+PREINSTALL=None
+CLIENT_CMD=git clone
+URL=https://github.com/pentestgeek/smbexec.git
+PATH=/opt/smbexec
+INSTALL=cd /opt/smbexec && ./install.sh
+##
+TITLE=Masscan
+PREINSTALL=apt-get install git gcc make libpcap-dev
+CLIENT_CMD=git clone
+URL=https://github.com/robertdavidgraham/masscan.git
+PATH=/opt/masscan
+INSTALL=cd /opt/masscan && make && make install
+##
+TITLE=Gitrob
+PREINSTALL=gem install bundler && service postgresql start && su postgres -c "createuser -s gitrob --pwprompt && su postgres createdb -O gitrob gitrob"
+CLIENT_CMD=git clone
+URL=https://github.com/michenriksen/gitrob.git
+PATH=/opt/gitrob
+INSTALL=cd /opt/gitrob/bin && gem install gitrob && cd /opt
+##
+TITLE=CMSmap
+PREINSTALL=None
+CLIENT_CMD=git clone
+URL=https://github.com/Dionach/CMSmap
+PATH=/opt/cmsmap
+INSTALL=None
+##
+TITLE=WPScan
+PREINSTALL=None
+CLIENT_CMD=git clone
+URL=https://github.com/wpscanteam/wpscan.git
+PATH=/opt/wpscan
+INSTALL=cd /opt/wpscan && ./wpscan.rb --update && cd /opt
+##
+TITLE=Eyewitness
+PREINSTALL=None
+CLIENT_CMD=git clone
+URL=https://github.com/ChrisTruncer/EyeWitness.git
+PATH=/opt/eyewitness
+INSTALL=None
+##
+TITLE=Praedasploit
+PREINSTALL=None
+CLIENT_CMD=git clone
+URL=https://github.com/MooseDojo/praedasploit
+PATH=/opt/praedasploit
+INSTALL=None
+##
+TITLE=SQLMap
+PREINSTALL=None
+CLIENT_CMD=git clone
+URL=https://github.com/sqlmapproject/sqlmap
+PATH=/opt/sqlmap
+INSTALL=None
+##
+TITLE=Recon-NG
+PREINSTALL=None
+CLIENT_CMD=git clone
+URL=https://bitbucket.org/LaNMaSteR53/recon-ng.git
+PATH=/opt/recon-ng
+INSTALL=None
+##
+TITLE=Discover Scripts
+PREINSTALL=None
+CLIENT_CMD=git clone
+URL=https://github.com/leebaird/discover.git
+PATH=/opt/discover
+INSTALL=cd /opt/discover && ./setup.sh && cd /opt
+##
+TITLE=Browser Exploitation Framework
+PREINSTALL=None
+CLIENT_CMD=wget
+URL=https://raw.github.com/beefproject/beef/a6a7536e/install-beef
+PATH=-O /opt/beef
+INSTALL=cd /opt/beef && chmod +x install-beef && ./install-beef
+##
+TITLE=Responder
+PREINSTALL=None
+CLIENT_CMD=git clone
+URL=https://github.com/lgandx/Responder.git
+PATH=/opt/Responder
+INSTALL=None
+##
+TITLE=NTDSXtract DSHashes
+PREINSTALL=None
+CLIENT_CMD=wget
+URL=http://ptscripts.googlecode.com/svn/trunk/dshashes.py
+PATH=-O /opt/NTDSXtract/dshashes.py
+INSTALL=None
+##
+TITLE=SPARTA
+PREINSTALL=apt-get -y install python-elixer && apt-get -y install ldap-utils rwho rsh-client x11-apps finger
+CLIENT_CMD=git clone
+URL=https://github.com/secforce/sparta.git
+PATH=/opt/sparta
+INSTALL=None
+##
+TITLE=NoSQLMap
+PREINSTALL=None
+CLIENT_CMD=git clone
+URL=https://github.com/tcstool/NoSQLMap.git
+PATH=/opt/NoSQLMap
+INSTALL=None
+##
+TITLE=Spiderfoot
+PREINSTALL=mkdir /opt/spiderfoot
+CLIENT_CMD=wget
+URL=http://sourceforge.net/projects/spiderfoot/files/spiderfoot-2.3.0-src.tar.gz/download
+PATH=-O /opt/spiderfoot
+INSTALL=cd /opt/spiderfoot && tar xzvf ./download && pip install lxml && pip install netaddr && pip install M2Crypto && pip install cherrypy && pip install mako
+##
+TITLE=Windows Credential Editor
+PREINSTALL=apt-get install -y wine && mkdir /opt/wce
+CLIENT_CMD=wget
+URL=http://ampliasecurity.com/research/wce_v1_4beta_universal.zip
+PATH=-O /opt/wce
+INSTALL=cd /opt/wce && unzip wce*.zip && rm wce*.zip && cd /opt
+##
+TITLE=Mimikatz
+PREINSTALL=None
+CLIENT_CMD=wget
+URL=https://github.com/gentilkiwi/mimikatz/releases/download/2.1.0-20161126/mimikatz_trunk.zip
+PATH=-O /opt
+INSTALL=unzip -d /opt/mimikatz /opt/mimikatz_trunk.zip
+##
+TITLE=Social Engineering Toolkit
+PREINSTALL=None
+CLIENT_CMD=git clone
+URL=https://github.com/trustedsec/social-engineer-toolkit
+PATH=/opt/set
+INSTALL=cd /opt/set && python2 setup.py install && cd /opt
+##
+TITLE=PowerSploit
+PREINSTALL=None
+CLIENT_CMD=git clone
+URL=https://github.com/PowerShellMafia/PowerSploit.git
+PATH=/opt/PowerSploit
+INSTALL=cd /opt/PowerSploit && wget https://raw.githubusercontent.com/obscuresec/random/master/StartListener.py && wget https://raw.githubusercontent.com/darkoperator/powershell_scripts/master/ps_encoder.py
+##
+TITLE=Nishang
+PREINSTALL=None
+CLIENT_CMD=git clone
+URL=https://github.com/samratashok/nishang
+PATH=/opt/nishang
+INSTALL=None
+##
+TITLE=Veil Framework
+PREINSTALL=None
+CLIENT_CMD=git clone
+URL=https://github.com/Veil-Framework/Veil.git
+PATH=/opt/Veil
+INSTALL=cd /opt/Veil && ./Install.sh -c
+##
+TITLE=BurpSuite Fuzzing Lists
+PREINSTALL=None
+CLIENT_CMD=git clone
+URL=https://github.com/danielmiessler/SecLists.git
+PATH=/opt/SecLists
+INSTALL=None
+##
+TITLE=Net-Creds Network Parsing
+PREINSTALL=None
+CLIENT_CMD=git clone
+URL=https://github.com/DanMcInerney/net-creds.git
+PATH=/opt/net-creds
+INSTALL=None
+##
+TITLE=Wifite
+PREINSTALL=None
+CLIENT_CMD=git clone
+URL=https://github.com/derv82/wifite
+PATH=/opt/wifite
+INSTALL=None
+##
+TITLE=WIFIPhisher
+PREINSTALL=None
+CLIENT_CMD=git clone
+URL=https://github.com/sophron/wifiphisher.git
+PATH=/opt/wifiphisher
+INSTALL=None
+##
+TITLE=Phishing Frenzy
+PREINSTALL=None
+CLIENT_CMD=git clone
+URL=https://github.com/pentestgeek/phishing-frenzy.git
+PATH=/var/www/phishing-frenzy
+INSTALL=None
+##
+TITLE=Impacket
+PREINSTALL=None
+CLIENT_CMD=git clone
+URL=https://github.com/CoreSecurity/impacket.git
+PATH=/opt/impacket
+INSTALL=cd /opt/impacket && python2 ./setup.py install && cd /opt
