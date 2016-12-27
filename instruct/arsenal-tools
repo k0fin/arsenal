@@ -17,14 +17,14 @@ PREINSTALL=None
 CLIENT_CMD=git clone
 URL=https://github.com/pentestgeek/smbexec.git
 PATH=/opt/smbexec
-INSTALL=cd /opt/smbexec && ./install.sh
+INSTALL=cd /opt/smbexec && ./install.sh && cd /opt
 ##
 TITLE=Masscan
-PREINSTALL=apt-get install git gcc make libpcap-dev
+PREINSTALL=apt-get -y install git gcc make libpcap-dev
 CLIENT_CMD=git clone
 URL=https://github.com/robertdavidgraham/masscan.git
 PATH=/opt/masscan
-INSTALL=cd /opt/masscan && make && make install
+INSTALL=cd /opt/masscan && make && make install && cd /opt
 ##
 TITLE=Gitrob
 PREINSTALL=gem install bundler && service postgresql start && su postgres -c "createuser -s gitrob --pwprompt && su postgres createdb -O gitrob gitrob"
@@ -87,7 +87,7 @@ PREINSTALL=None
 CLIENT_CMD=wget
 URL=https://raw.github.com/beefproject/beef/a6a7536e/install-beef
 PATH=-O /opt/beef
-INSTALL=cd /opt/beef && chmod +x install-beef && ./install-beef
+INSTALL=cd /opt/beef && chmod +x install-beef && ./install-beef && cd /opt
 ##
 TITLE=Responder
 PREINSTALL=None
@@ -207,3 +207,10 @@ CLIENT_CMD=git clone
 URL=https://github.com/CoreSecurity/impacket.git
 PATH=/opt/impacket
 INSTALL=cd /opt/impacket && python2 ./setup.py install && cd /opt
+##
+TITLE=White_Lightning
+PREINSTALL=None
+CLIENT_CMD=git clone
+URL=https://github.com/TweekFawkes/White_Lightning.git
+PATH=/opt/White_Lightning
+INSTALL=None

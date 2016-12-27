@@ -67,6 +67,7 @@ using the included install scripts-
   - Impacket
   - Oracle Java
   - Pykek
+  - White_Lightning
 
 ## Usage
 *  Simply run the script to load the Arsenal configuration file.
