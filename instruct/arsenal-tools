@@ -200,3 +200,10 @@ CLIENT_CMD=git clone
 URL=https://github.com/TweekFawkes/White_Lightning.git
 PATH=/opt/White_Lightning
 INSTALL=None
+##
+TITLE=Pykek
+PREINSTALL=None
+CLIENT_CMD=git clone
+URL=https://github.com/bidord/pykek.git
+PATH=/opt/pykek
+INSTALL=None

@@ -62,10 +62,12 @@ def arsenal_menu():
     elif select == 3:
         print "INSTALLING EXTRAS"
 
-
     elif select == 4:
         print "EXITING"
         sys.exit()
+
+    else:
+        arsenal_menu()
 
 def load_config_file(fname):
 
@@ -132,13 +134,13 @@ def banner():
     '''
 
 banner()
+
 config_vars = load_config_file('/opt/arsenal/conf/arsenal.conf')
 updater_file = config_vars['UPDATES_INSTALL_FILE']
 install_file = config_vars['TOOLS_INSTALL_FILE']
 extras_file = config_vars['EXTRA_INSTALL_FILE']
 update_buf = load_updater_file(updater_file)
 install_buf = load_install_file(install_file)
-print update_buf
 
 for ib in install_buf:
     keylist = install_buf[ib]
@@ -165,5 +167,5 @@ for ib in install_buf:
     print '-' * border
     print "[<>] Installing {} to {}...".format(title,install_to)
     print "[<>] URL: {}".format(package_url)
-    print "[<>] Full Command: {}".format(arsenalstr)
+    os.system(arsenalstr)
     print '-' * border
