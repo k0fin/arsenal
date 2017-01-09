@@ -3,35 +3,35 @@ PREINSTALL=None
 CLIENT_CMD=git clone
 URL=https://github.com/secretsquirrel/the-backdoor-factory
 PATH=/opt/the-backdoor-factory
-INSTALL=cd /opt/the-backdoor-factory && ./install.sh && cd /opt
+INSTALL=cd /opt/the-backdoor-factory && ./install.sh && cd /opt/arsenal
 ##
 TITLE=HTTPScreenshot
 PREINSTALL=pip install selenium
 CLIENT_CMD=git clone
 URL=https://github.com/breenmachine/httpscreenshot.git
 PATH=/opt/httpscreenshot
-INSTALL=cd /opt/httpscreenshot && chmod +x install-dependencies.sh && ./install-dependencies.sh && cd /opt
+INSTALL=cd /opt/httpscreenshot && chmod +x install-dependencies.sh && ./install-dependencies.sh && cd /opt/arsenal
 ##
 TITLE=SMBExec
-PREINSTALL=None
+PREINSTALL=apt-get -y install libesedb-dev libesedb-utils
 CLIENT_CMD=git clone
 URL=https://github.com/pentestgeek/smbexec.git
 PATH=/opt/smbexec
-INSTALL=cd /opt/smbexec && ./install.sh && cd /opt
+INSTALL=cd /opt/smbexec && ./install.sh && cd /opt/arsenal
 ##
 TITLE=Masscan
 PREINSTALL=apt-get -y install git gcc make libpcap-dev
 CLIENT_CMD=git clone
 URL=https://github.com/robertdavidgraham/masscan.git
 PATH=/opt/masscan
-INSTALL=cd /opt/masscan && make && make install && cd /opt
+INSTALL=cd /opt/masscan && make && make install && cd /opt/arsenal
 ##
 TITLE=Gitrob
-PREINSTALL=gem install bundler && service postgresql start && su postgres -c "createuser -s gitrob --pwprompt && su postgres createdb -O gitrob gitrob"
+PREINSTALL=apt-get -y install libpq-dev && gem install bundler && service postgresql start && su postgres -c "createuser -s gitrob --pwprompt" && su postgres -c "createdb -O gitrob gitrob"
 CLIENT_CMD=git clone
 URL=https://github.com/michenriksen/gitrob.git
 PATH=/opt/gitrob
-INSTALL=cd /opt/gitrob/bin && gem install gitrob && cd /opt
+INSTALL=cd /opt/gitrob/bin && gem install gitrob && cd /opt/arsenal
 ##
 TITLE=CMSmap
 PREINSTALL=None
@@ -45,7 +45,7 @@ PREINSTALL=None
 CLIENT_CMD=git clone
 URL=https://github.com/wpscanteam/wpscan.git
 PATH=/opt/wpscan
-INSTALL=cd /opt/wpscan && ./wpscan.rb --update && cd /opt
+INSTALL=cd /opt/wpscan && ./wpscan.rb --update && cd /opt/arsenal
 ##
 TITLE=Eyewitness
 PREINSTALL=None
@@ -80,14 +80,14 @@ PREINSTALL=None
 CLIENT_CMD=git clone
 URL=https://github.com/leebaird/discover.git
 PATH=/opt/discover
-INSTALL=cd /opt/discover && ./setup.sh && cd /opt
+INSTALL=cd /opt/discover && ./update.sh && cd /opt/arsenal
 ##
 TITLE=Browser Exploitation Framework
-PREINSTALL=None
+PREINSTALL=mkdir /opt/beef
 CLIENT_CMD=wget
 URL=https://raw.github.com/beefproject/beef/a6a7536e/install-beef
-PATH=-O /opt/beef
-INSTALL=cd /opt/beef && chmod +x install-beef && ./install-beef && cd /opt
+PATH=-O /opt/beef/install-beef
+INSTALL=cd /opt/beef && chmod +x install-beef && ./install-beef && cd /opt/arsenal
 ##
 TITLE=Responder
 PREINSTALL=None
@@ -96,15 +96,15 @@ URL=https://github.com/lgandx/Responder.git
 PATH=/opt/Responder
 INSTALL=None
 ##
-TITLE=NTDSXtract DSHashes
+TITLE=DumpNTDS
 PREINSTALL=None
-CLIENT_CMD=wget
-URL=http://ptscripts.googlecode.com/svn/trunk/dshashes.py
-PATH=-O /opt/NTDSXtract/dshashes.py
+CLIENT_CMD=git clone
+URL=https://github.com/infoassure/dumpntds.git
+PATH=/opt/dumpntds
 INSTALL=None
 ##
 TITLE=SPARTA
-PREINSTALL=apt-get -y install python-elixer && apt-get -y install ldap-utils rwho rsh-client x11-apps finger
+PREINSTALL=apt-get -y install ldap-utils rwho rsh-client x11-apps finger
 CLIENT_CMD=git clone
 URL=https://github.com/secforce/sparta.git
 PATH=/opt/sparta
@@ -117,40 +117,26 @@ URL=https://github.com/tcstool/NoSQLMap.git
 PATH=/opt/NoSQLMap
 INSTALL=None
 ##
-TITLE=Spiderfoot
-PREINSTALL=mkdir /opt/spiderfoot
-CLIENT_CMD=wget
-URL=http://sourceforge.net/projects/spiderfoot/files/spiderfoot-2.3.0-src.tar.gz/download
-PATH=-O /opt/spiderfoot
-INSTALL=cd /opt/spiderfoot && tar xzvf ./download && pip install lxml && pip install netaddr && pip install M2Crypto && pip install cherrypy && pip install mako
-##
-TITLE=Windows Credential Editor
-PREINSTALL=apt-get install -y wine && mkdir /opt/wce
-CLIENT_CMD=wget
-URL=http://ampliasecurity.com/research/wce_v1_4beta_universal.zip
-PATH=-O /opt/wce
-INSTALL=cd /opt/wce && unzip wce*.zip && rm wce*.zip && cd /opt
-##
 TITLE=Mimikatz
 PREINSTALL=None
 CLIENT_CMD=wget
 URL=https://github.com/gentilkiwi/mimikatz/releases/download/2.1.0-20161126/mimikatz_trunk.zip
-PATH=-O /opt
-INSTALL=unzip -d /opt/mimikatz /opt/mimikatz_trunk.zip
+PATH=-O /opt/mimikatz_trunk.zip
+INSTALL=unzip -d /opt/mimikatz /opt/mimikatz_trunk.zip && rm /opt/mimikatz_trunk.zip && cd /opt/arsenal
 ##
 TITLE=Social Engineering Toolkit
 PREINSTALL=None
 CLIENT_CMD=git clone
 URL=https://github.com/trustedsec/social-engineer-toolkit
 PATH=/opt/set
-INSTALL=cd /opt/set && python2 setup.py install && cd /opt
+INSTALL=cd /opt/set && python2 setup.py install && cd /opt/arsenal
 ##
 TITLE=PowerSploit
 PREINSTALL=None
 CLIENT_CMD=git clone
 URL=https://github.com/PowerShellMafia/PowerSploit.git
 PATH=/opt/PowerSploit
-INSTALL=cd /opt/PowerSploit && wget https://raw.githubusercontent.com/obscuresec/random/master/StartListener.py && wget https://raw.githubusercontent.com/darkoperator/powershell_scripts/master/ps_encoder.py
+INSTALL=cd /opt/PowerSploit && wget https://raw.githubusercontent.com/obscuresec/random/master/StartListener.py && wget https://raw.githubusercontent.com/darkoperator/powershell_scripts/master/ps_encoder.py && cd /opt/arsenal
 ##
 TITLE=Nishang
 PREINSTALL=None
@@ -164,7 +150,7 @@ PREINSTALL=None
 CLIENT_CMD=git clone
 URL=https://github.com/Veil-Framework/Veil.git
 PATH=/opt/Veil
-INSTALL=cd /opt/Veil && ./Install.sh -c
+INSTALL=cd /opt/Veil && ./Install.sh -c && cd /opt/arsenal
 ##
 TITLE=BurpSuite Fuzzing Lists
 PREINSTALL=None
@@ -206,7 +192,7 @@ PREINSTALL=None
 CLIENT_CMD=git clone
 URL=https://github.com/CoreSecurity/impacket.git
 PATH=/opt/impacket
-INSTALL=cd /opt/impacket && python2 ./setup.py install && cd /opt
+INSTALL=cd /opt/impacket && python2 ./setup.py install && cd /opt/arsenal
 ##
 TITLE=White_Lightning
 PREINSTALL=None
