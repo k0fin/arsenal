@@ -207,3 +207,10 @@ CLIENT_CMD=git clone
 URL=https://github.com/bidord/pykek.git
 PATH=/opt/pykek
 INSTALL=None
+##
+TITLE=ShadowBrokerWindows
+PREINSTALL=None
+CLIENT_CMD=git clone
+URL=https://github.com/misterch0c/shadowbroker.git
+PATH=/opt/shadowbrokerwindows
+INSTALL=cd /opt/shadowbrokerwindows/windows && cp eternalblue_doublepulsar.rb /usr/share/metasploit-framework/modules/exploits/windows/smb/eternalblue_doublepulsar.rb && cd /opt/arsenal
