@@ -7,6 +7,9 @@
   several other tools and installation scripts are included in Arsenal,
   which automate the download and installation of tools such as CobaltStrike and Hostapd-WPE.
   
+## Requirements
+
+* Run 'pip install blessings' (used in Arsenal for proper console output) and you should be good to go.
 
 ## Install
 
@@ -37,7 +40,7 @@ Arsenal will download and install the following tools-
   - Discover Scripts
   - Browser Exploitation Framework
   - Responder
-  - DSHashes
+  - DumpNTDS
   - SPARTA
   - NoSQLMap
   - Spiderfoot
@@ -56,22 +59,48 @@ Arsenal will download and install the following tools-
   - WIFIPhisher
   - Phishing Frenzy
   - SMBExec
+  - Pykek
+  - BloodHound
 
 * Extra Tool Installation
 
 Arsenal will download and install the following additional tools to Kali Linux
-using the included install scripts-
+using their included individual install scripts-
 
-  - CobaltStrike
+  - CobaltStrike (trial, license key required for full version)
   - Hostapd-WPE
   - Impacket
   - Oracle Java
-  - Pykek
   - White_Lightning
 
 ## Usage
-*  Simply run the script to load the Arsenal configuration file.
+
+* Arsenal utilizes files containing the instructions for tools installation and updates.
+  There are 3 files under the instruct folder named arsenal-tools, arsenal-updates, and arsenal-extras.
+  In the conf folder, a file named arsenal.conf contains global variables which are parsed by the Arsenal script.
+  These global variables point to the files used for updates, tools, and extras. By default, the 3 files mentioned earlier
+  are used in this configuration file. Any edits made to the configuration file could possibly break the tool if written improperly,
+  so use caution when adding extra tool sources, update commands, or install scripts.
+
+* Tools
+
+* The arsenal-tools files contains the instructions parsed by Arsenal to install tools.
+  The instructions within the file look something like this-
+
+...snip...
+
+TITLE=TOOLNAME
+PREINSTALL=COMMANDS_TO_INSTALL_BEFORE_DOWNLOADING_THE_TOOL
+CLIENT_CMD=WEB CLIENT TO USE FOR DOWNLOADING THE TOOL
+URL=URL TO TOOL
+PATH=TOOL INSTALLATION PATH
+INSTALL=COMMAND_TO_INSTALL_TOOL
+
+...snip...
+
+
+* Extras
+
+*  Simply run the arsenal.py script.
 
   - ./arsenal.py
-
-## ToDo
