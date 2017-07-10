@@ -76,13 +76,17 @@ using their included individual install scripts-
 ## Usage
 
 * Arsenal utilizes files containing the instructions for tools installation and updates.
-  There are 3 files under the instruct folder named arsenal-tools, arsenal-updates, and arsenal-extras.
+* There are 3 files under the instruct folder named arsenal-tools, arsenal-updates, and arsenal-extras.
   In the conf folder, a file named arsenal.conf contains global variables which are parsed by the Arsenal script.
   These global variables point to the files used for updates, tools, and extras. By default, the 3 files mentioned earlier
   are used in this configuration file. Any edits made to the configuration file could possibly break the tool if written improperly,
   so use caution when adding extra tool sources, update commands, or install scripts.
 
-* Tools
+*  Simply run the arsenal.py script.
+
+  - ./arsenal.py
+
+## Tools
 
 * The arsenal-tools files contains the instructions parsed by Arsenal to install tools.
   The instructions within the file look something like this-
@@ -97,10 +101,3 @@ PATH=TOOL INSTALLATION PATH
 INSTALL=COMMAND_TO_INSTALL_TOOL
 
 ...snip...
-
-
-* Extras
-
-*  Simply run the arsenal.py script.
-
-  - ./arsenal.py
