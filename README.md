@@ -61,6 +61,7 @@ Arsenal will download and install the following tools-
   - SMBExec
   - Pykek
   - BloodHound
+  - Sn1p3r
 
 * Extra Tool Installation
 
