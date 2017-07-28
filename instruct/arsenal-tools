@@ -214,3 +214,17 @@ CLIENT_CMD=git clone
 URL=https://github.com/1N3/Sn1per.git
 PATH=/opt/Sn1p3r
 INSTALL=None
+##
+TITLE=DroopScan
+PREINSTALL=None
+CLIENT_CMD=git clone
+URL=https://github.com/droope/droopescan.git
+PATH=/opt/droopscan
+INSTALL=None
+##
+TITLE=PyBelt
+PREINSTALL=None
+CLIENT_CMD=git clone
+URL=https://github.com/Ekultek/Pybelt.git
+PATH=/opt/pybelt
+INSTALL=None
