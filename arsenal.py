@@ -18,26 +18,15 @@ from argparse import ArgumentParser
 #  / ___ |/ /  (__  )  __/ / / / /_/ / /
 # /_/  |_/_/  /____/\___/_/ /_/\__,_/_/
 #
-# Arsenal | A script to download and install additional tools
-#         | to Kali Linux 2.
+# Arsenal | > A Python script to download an arsenal of additional
+#         |   penetration testing tools.
+#         | > Tested on Kali Linux 2.
 ###############################################################
 
 border = blessings.Terminal().width
 
-def main():
-
-    parser = ArgumentParser()
-
-    parser.add_argument('-c', '--config', help='alternate path to arsenal configuration file path')
-    args = parser.parse_args()
-    arsenal_config = args.config
-
-    if arsenal_config and len(glob.glob('{}/*'.format(arsenal_config))) != 0:
-        loaded_config = load_config_file(arsenal_config)
-        install_file = loaded_config['INSTALL_FILE']
-        loaded_install = load_install_file(install_file)
-
 def arsenal_menu():
+    config_vars = load_config_file('/opt/arsenal/conf/arsenal.conf')
 
     menu = '''
 [ 1 ] - Launch Updates
@@ -46,6 +35,7 @@ def arsenal_menu():
 [ 4 ] - Exit Arsenal
 
     '''
+    print menu
 
     select = int(raw_input('[<>] Select an option: '))
     if select < 1 or select > 4:
@@ -54,16 +44,22 @@ def arsenal_menu():
         arsenal_menu()
 
     if select == 1:
-        print "UPDATING KALI"
+        updater_file = config_vars['UPDATES_INSTALL_FILE']
+        update_buf = load_updater_file(updater_file)
+        print update_buf
 
     elif select == 2:
-        print "INSTALLING TOOLS"
+        install_file = config_vars['TOOLS_INSTALL_FILE']
+        install_buf = load_install_file(install_file)
+        arsenal_tools_install(install_buf)
 
     elif select == 3:
-        print "INSTALLING EXTRAS"
+        extras_file = config_vars['EXTRA_INSTALL_FILE']
+        extras_buf = load_extras_file(extras_file)
+        print extras_buf
 
     elif select == 4:
-        print "EXITING"
+        print '[<>] Goodbye!'
         sys.exit()
 
     else:
@@ -89,6 +85,32 @@ def load_updater_file(fname):
 
     with open(fname, 'r') as updatefile:
         return updatefile.read()
+
+def load_extras_file(fname):
+
+    with open(fname, 'r') as extrasfile:
+        extras = []
+        extrakeys = {}
+        dcount = 1
+        extrasbuf = extrasfile.read().strip().split('\n##')
+        for obj in extrasbuf:
+            if obj.startswith('#'):
+                continue
+            extras.append(obj)
+
+        for e in extras:
+            directive = e.split('\n')
+            direct_keys = []
+            for d in directive:
+                var = d.split('=')[0]
+                val = "".join(d.split('=')[1:])
+                if var == '' or val == '':
+                    continue
+                keypair = {var:val}
+                direct_keys.append(keypair)
+            extrakeys.update({dcount:direct_keys})
+            dcount += 1
+        return extrakeys
 
 def load_install_file(fname):
 
@@ -117,6 +139,37 @@ def load_install_file(fname):
             dcount += 1
         return install_keys
 
+def arsenal_tools_install(install_buf):
+
+    for ib in install_buf:
+        keylist = install_buf[ib]
+        tempkeys = {}
+        for k in keylist:
+            keyname = ''.join(k.keys())
+            tempkeys.update({keyname:k[keyname]})
+        title = tempkeys['TITLE']
+        if title.startswith('#'):
+            continue
+
+        install_to = tempkeys['PATH']
+        client_cmd = tempkeys['CLIENT_CMD']
+        package_url = tempkeys['URL']
+        preinstall = tempkeys['PREINSTALL']
+        install = tempkeys['INSTALL']
+
+        arsenalstr = '{} {} {}'.format(client_cmd,package_url,install_to)
+        if preinstall != 'None':
+            arsenalstr = preinstall + ' && ' + arsenalstr
+
+        if install != 'None':
+            arsenalstr = arsenalstr + ' && ' + install
+
+        print '-' * border
+        print "[<>] Installing {} to {}...".format(title,install_to)
+        print "[<>] URL: {}".format(package_url)
+       # os.system(arsenalstr)
+        print '-' * border
+
 def banner():
 
     os.system('clear')
@@ -133,39 +186,9 @@ def banner():
 ###############################################################
     '''
 
-banner()
+def main():
+    banner()
+    arsenal_menu()
 
-config_vars = load_config_file('/opt/arsenal/conf/arsenal.conf')
-updater_file = config_vars['UPDATES_INSTALL_FILE']
-install_file = config_vars['TOOLS_INSTALL_FILE']
-extras_file = config_vars['EXTRA_INSTALL_FILE']
-update_buf = load_updater_file(updater_file)
-install_buf = load_install_file(install_file)
-
-for ib in install_buf:
-    keylist = install_buf[ib]
-    tempkeys = {}
-    for k in keylist:
-        keyname = ''.join(k.keys())
-        tempkeys.update({keyname:k[keyname]})
-    title = tempkeys['TITLE']
-    if title.startswith('#'):
-        continue
-    install_to = tempkeys['PATH']
-    client_cmd = tempkeys['CLIENT_CMD']
-    package_url = tempkeys['URL']
-    preinstall = tempkeys['PREINSTALL']
-    install = tempkeys['INSTALL']
-
-    arsenalstr = '{} {} {}'.format(client_cmd,package_url,install_to)
-    if preinstall != 'None':
-        arsenalstr = preinstall + ' && ' + arsenalstr
-
-    if install != 'None':
-        arsenalstr = arsenalstr + ' && ' + install
-
-    print '-' * border
-    print "[<>] Installing {} to {}...".format(title,install_to)
-    print "[<>] URL: {}".format(package_url)
-    os.system(arsenalstr)
-    print '-' * border
+if __name__ == '__main__':
+    main()
