@@ -17,11 +17,7 @@
 
 Arsenal will perform the following configurations-
 
-  - Update the password
   - Update and upgrade
-  - Setup the Metasploit database
-  - Change hostname
-  - Enable Metasploit logging
 
 * Core Tools Installation
 
@@ -62,17 +58,6 @@ Arsenal will download and install the following tools-
   - Pykek
   - BloodHound
   - Sn1p3r
-
-* Extra Tool Installation
-
-Arsenal will download and install the following additional tools to Kali Linux
-using their included individual install scripts-
-
-  - CobaltStrike (trial, license key required for full version)
-  - Hostapd-WPE
-  - Impacket
-  - Oracle Java
-  - White_Lightning
 
 ## Usage
 

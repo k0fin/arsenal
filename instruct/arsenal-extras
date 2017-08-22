@@ -7,13 +7,3 @@ TITLE=Hostapd-WPE
 PREINSTALL=apt-get -y install libssl-dev
 PATH=/opt
 INSTALL_SCRIPT=/opt/arsenal/scripts/hostapd-wpe-install.py
-##
-TITLE=BurpSuitePro
-PREINSTALL=None
-PATH=/opt
-INSTALL_SCRIPT=/opt/arsenal/scripts/burpsuitepro-install.py
-##
-TITLE=PyKeK
-PREINSTALL=None
-PATH=/opt
-INSTALL_SCRIPT=/opt/arsenal/scripts/pykek-install.py

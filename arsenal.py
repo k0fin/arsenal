@@ -31,8 +31,7 @@ def arsenal_menu():
     menu = '''
 [ 1 ] - Launch Updates
 [ 2 ] - Install Tools
-[ 3 ] - Install Extras
-[ 4 ] - Exit Arsenal
+[ 3 ] - Exit Arsenal
 
     '''
     print menu
@@ -44,21 +43,22 @@ def arsenal_menu():
         arsenal_menu()
 
     if select == 1:
-        updater_file = config_vars['UPDATES_INSTALL_FILE']
-        update_buf = load_updater_file(updater_file)
-        print update_buf
+        confirm = raw_input('[<>] This option will update and upgrade your Kali Linux distro. Continue? (y / n): ')
+        if confirm.lower() == 'y':
+            os.system('apt-get -y update && apt-get -y upgrade && apt-get -y dist-upgrade')
+        else:
+            arsenal_menu()
 
     elif select == 2:
-        install_file = config_vars['TOOLS_INSTALL_FILE']
-        install_buf = load_install_file(install_file)
-        arsenal_tools_install(install_buf)
+        confirm = raw_input('[<>] This option will install the tools in arsenal-tools to your Kali Linux distro. Continue? (y / n): ')
+        if confirm.lower() == 'y':
+            install_file = config_vars['TOOLS_INSTALL_FILE']
+            install_buf = load_install_file(install_file)
+            arsenal_tools_install(install_buf)
+        else:
+            arsenal_menu()
 
     elif select == 3:
-        extras_file = config_vars['EXTRA_INSTALL_FILE']
-        extras_buf = load_extras_file(extras_file)
-        print extras_buf
-
-    elif select == 4:
         print '[<>] Goodbye!'
         sys.exit()
 
@@ -167,7 +167,7 @@ def arsenal_tools_install(install_buf):
         print '-' * border
         print "[<>] Installing {} to {}...".format(title,install_to)
         print "[<>] URL: {}".format(package_url)
-       # os.system(arsenalstr)
+        os.system('{} &'.format(arsenalstr))
         print '-' * border
 
 def banner():

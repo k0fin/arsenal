@@ -1,5 +1,0 @@
-##
-TITLE=Kali Linux Update and Upgrade
-PREINSTALL=apt-get -y update && apt-get -y upgrade && apt-get -y dist-upgrade
-INSTALL=apt-get -y install python-pip && pip install --upgrade pip && pip install blessings && pip install requests && pip install bs4
-
